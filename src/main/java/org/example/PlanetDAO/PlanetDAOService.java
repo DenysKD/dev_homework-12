@@ -6,8 +6,9 @@ import org.example.hibernate.HibernateUtils;
 import org.hibernate.Session;
 import java.util.List;
 
-public class PlanetDAO {
+public class PlanetDAOService implements PlanetDao{
 
+    @Override
     public boolean createPlanet(String planetID, String planetName) {
 
         Transaction transaction = null;
@@ -30,6 +31,7 @@ public class PlanetDAO {
         }
     }
 
+    @Override
     public Planet getPlanet(String planetID){
 
         try(Session session = HibernateUtils.getInstance()
@@ -43,6 +45,7 @@ public class PlanetDAO {
         }
     }
 
+    @Override
     public List<Planet> getAllPlanets(){
 
         try(Session session = HibernateUtils.getInstance()
@@ -57,6 +60,7 @@ public class PlanetDAO {
         }
     }
 
+    @Override
     public boolean updatePlanet(String planetID, String changedName){
 
         Transaction transaction = null;
@@ -79,6 +83,7 @@ public class PlanetDAO {
         }
     }
 
+    @Override
     public boolean deletePlanet(String planetID){
 
         Transaction transaction = null;

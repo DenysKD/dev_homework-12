@@ -7,8 +7,9 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class ClientDAO {
+public class ClientDAOService implements ClientDao {
 
+    @Override
     public boolean createClient(String name){
 
         Transaction transaction = null;
@@ -30,6 +31,7 @@ public class ClientDAO {
         }
     }
 
+    @Override
     public Client getClient(long clientID){
 
         try(Session session = HibernateUtils.getInstance()
@@ -43,6 +45,7 @@ public class ClientDAO {
         }
     }
 
+    @Override
     public List<Client> getAllClients(){
 
         try(Session session = HibernateUtils.getInstance()
@@ -57,6 +60,7 @@ public class ClientDAO {
         }
     }
 
+    @Override
     public boolean updateClient(long clientID, String clientName){
 
         Transaction transaction = null;
@@ -79,6 +83,7 @@ public class ClientDAO {
         }
     }
 
+    @Override
     public boolean deleteClient(long clientID){
 
         Transaction transaction = null;
