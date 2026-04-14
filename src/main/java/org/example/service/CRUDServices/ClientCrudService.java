@@ -1,15 +1,15 @@
 package org.example.CRUDServices;
 
-import org.example.ClientDAO.ClientDAOService;
-import org.example.ClientDAO.ClientDao;
+import org.example.DAO.ClientDAOServiceImpl;
+import org.example.DAO.ClientDaoService;
 import org.example.entity.Client;
 
 import java.util.List;
 
-public class ClientCrudService implements ClientDao {
-    ClientDAOService clientDao;
+public class ClientCrudService implements ClientDaoService {
+    ClientDAOServiceImpl clientDao;
 
-    public ClientCrudService(){ clientDao = new ClientDAOService(); }
+    public ClientCrudService(){ clientDao = new ClientDAOServiceImpl(); }
 
     @Override
     public boolean createClient(String name) {

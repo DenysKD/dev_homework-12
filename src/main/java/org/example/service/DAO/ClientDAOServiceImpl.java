@@ -1,44 +1,59 @@
-package org.example.PlanetDAO;
+package org.example.DAO;
 
-import org.example.entity.Planet;
-import org.hibernate.Transaction;
+import org.example.entity.Client;
 import org.example.hibernate.HibernateUtils;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import java.util.List;
 
-public class PlanetDAOService implements PlanetDao{
+public class ClientDAOServiceImpl implements ClientDaoService {
 
     @Override
-    public boolean createPlanet(String planetID, String planetName) {
+    public boolean createClient(String name){
 
         Transaction transaction = null;
-        try (Session session = HibernateUtils.getInstance()
+        try(Session session = HibernateUtils.getInstance()
+                .getSessionFactory().openSession()){
+
+            transaction = session.beginTransaction();
+
+            Client client = new Client();
+            client.setName(name);
+            session.persist(client);
+
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if(transaction != null) transaction.rollback();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Client getClient(long clientID){
+
+        try(Session session = HibernateUtils.getInstance()
+                .getSessionFactory().openSession()){
+
+            Client client = session.find(Client.class, clientID);
+            return client;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw  new RuntimeException("Щось пішло не так!");
+        }
+    }
+
+    @Override
+    public List<Client> getAllClients(){
+
+        try(Session session = HibernateUtils.getInstance()
                 .getSessionFactory().openSession()) {
 
-            transaction = session.beginTransaction();
+            List<Client> allClients = session.createQuery("from Client", Client.class).list();
 
-            Planet planet = new Planet();
-            planet.setId(planetID);
-            planet.setName(planetName);
-            session.persist(planet);
-
-            transaction.commit();
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Override
-    public Planet getPlanet(String planetID){
-
-        try(Session session = HibernateUtils.getInstance()
-                .getSessionFactory().openSession()){
-
-            Planet gettedPlanet = session.find(Planet.class, planetID);
-            return gettedPlanet;
+            return allClients;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Щось пішло не так!");
@@ -46,54 +61,39 @@ public class PlanetDAOService implements PlanetDao{
     }
 
     @Override
-    public List<Planet> getAllPlanets(){
-
-        try(Session session = HibernateUtils.getInstance()
-                .getSessionFactory().openSession()){
-
-            List<Planet> allPlanets = session.createQuery("from Planet", Planet.class).list();
-
-            return allPlanets;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Щось пішло не так!");
-        }
-    }
-
-    @Override
-    public boolean updatePlanet(String planetID, String changedName){
+    public boolean updateClient(long clientID, String clientName){
 
         Transaction transaction = null;
         try(Session session = HibernateUtils.getInstance()
                 .getSessionFactory().openSession()){
 
-            Planet mergePlanet = this.getPlanet(planetID);
-            if(mergePlanet == null) return false;
+            Client mergeClient = this.getClient(clientID);
+            if(mergeClient == null) return false;
 
             transaction = session.beginTransaction();
 
-            mergePlanet.setName(changedName);
-            session.merge(mergePlanet);
+            mergeClient.setName(clientName);
+            session.merge(mergeClient);
             transaction.commit();
             return true;
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if(transaction != null) transaction.rollback();
             e.printStackTrace();
             return false;
         }
     }
 
     @Override
-    public boolean deletePlanet(String planetID){
+    public boolean deleteClient(long clientID){
 
         Transaction transaction = null;
         try(Session session = HibernateUtils.getInstance()
                 .getSessionFactory().openSession()){
-            Planet remowedPlanet = this.getPlanet(planetID);
-            if(remowedPlanet == null) return false;
+            Client deletedClient = this.getClient(clientID);
+            if(deletedClient == null) return false;
 
             transaction = session.beginTransaction();
-            session.remove(remowedPlanet);
+            session.remove(deletedClient);
             transaction.commit();
             return true;
         } catch (Exception e) {

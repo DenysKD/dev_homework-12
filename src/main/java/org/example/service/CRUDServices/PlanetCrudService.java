@@ -1,16 +1,16 @@
 package org.example.CRUDServices;
 
-import org.example.PlanetDAO.PlanetDAOService;
-import org.example.PlanetDAO.PlanetDao;
+import org.example.DAO.PlanetDAOServiceImpl;
+import org.example.DAO.PlanetDaoService;
 import org.example.entity.Planet;
 
 import java.util.List;
 
-public class PlanetCrudService implements PlanetDao {
-    PlanetDao planetDao;
+public class PlanetCrudService implements PlanetDaoService {
+    PlanetDaoService planetDao;
 
     public PlanetCrudService(){
-        planetDao = new PlanetDAOService();
+        planetDao = new PlanetDAOServiceImpl();
     }
 
     @Override

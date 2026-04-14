@@ -1,10 +1,10 @@
-package org.example.ClientDAO;
+package org.example.DAO;
 
 import org.example.entity.Client;
 
 import java.util.List;
 
-public interface ClientDao {
+public interface ClientDaoService {
 
     boolean createClient(String name);
     Client getClient(long clientID);

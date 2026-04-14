@@ -1,10 +1,10 @@
-package org.example.PlanetDAO;
+package org.example.DAO;
 
 import org.example.entity.Planet;
 
 import java.util.List;
 
-public interface PlanetDao {
+public interface PlanetDaoService {
 
     boolean createPlanet(String planetID, String planetName);
     Planet getPlanet(String planetID);
