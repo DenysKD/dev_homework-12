@@ -1,7 +1,7 @@
-package org.example.CRUDServices;
+package org.example.service.CRUDServices;
 
-import org.example.DAO.PlanetDAOServiceImpl;
-import org.example.DAO.PlanetDaoService;
+import org.example.service.DAO.PlanetDAOServiceImpl;
+import org.example.service.DAO.PlanetDaoService;
 import org.example.entity.Planet;
 
 import java.util.List;

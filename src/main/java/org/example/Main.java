@@ -1,10 +1,8 @@
 package org.example;
 
-import org.example.CRUDServices.ClientCrudService;
-import org.example.CRUDServices.PlanetCrudService;
-import org.example.ClientDAO.ClientDAOService;
+import org.example.service.CRUDServices.ClientCrudService;
+import org.example.service.CRUDServices.PlanetCrudService;
 import org.example.DBConnection.DatabaseConnectoin;
-import org.example.PlanetDAO.PlanetDAOService;
 import org.example.entity.Client;
 import org.example.entity.Planet;
 
