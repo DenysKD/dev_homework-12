@@ -2,6 +2,7 @@ package org.example.hibernate;
 
 import org.example.entity.Client;
 import org.example.entity.Planet;
+import org.example.entity.Ticket;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -15,6 +16,7 @@ public class HibernateUtils {
         this.sessionFactory = new Configuration()
                 .addAnnotatedClass(Client.class)
                 .addAnnotatedClass(Planet.class)
+                .addAnnotatedClass(Ticket.class)
                 .buildSessionFactory();
     }
 

@@ -1,10 +1,12 @@
 package org.example;
 
+import org.example.entity.Ticket;
 import org.example.service.CRUDServices.ClientCrudService;
 import org.example.service.CRUDServices.PlanetCrudService;
 import org.example.DBConnection.DatabaseConnectoin;
 import org.example.entity.Client;
 import org.example.entity.Planet;
+import org.example.service.CRUDServices.TicketCrudService;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class Main{
     static void main(String[] args) {
         DatabaseConnectoin dbc = DatabaseConnectoin.getInstance();
 
-        PlanetCrudService planetCrud = new PlanetCrudService();
+        /*PlanetCrudService planetCrud = new PlanetCrudService();
         ClientCrudService clientCrud = new ClientCrudService();
 
         //тестування Planet
@@ -75,6 +77,32 @@ public class Main{
             if(!allClients.isEmpty()) {
                 allClients.forEach(c -> System.out.println(c.toString()));
             }
+        }*/
+
+        System.out.println("===========================================");
+
+        //тестування Ticket
+        TicketCrudService ticketCrudService = new TicketCrudService();
+        ticketCrudService.createTicket(5L, "MARS", "EA");
+        List<Ticket> allTickets = ticketCrudService.getAllTickets();
+        allTickets.forEach(t -> System.out.println(t.toString()));
+        System.out.println("--------------------------------");
+        Ticket someTicket = ticketCrudService.getTicket(1L);
+        if (someTicket != null) {
+            someTicket.toString();
         }
+        allTickets = ticketCrudService.getAllTickets();
+        if (ticketCrudService.updateTicket(7L, "VEN")){
+            System.out.println("Квиток оновлено!");
+        }
+        System.out.println("--------------------------------");
+        if (ticketCrudService.deleteTicket(17L)){
+            System.out.println("Квиток видалено!");
+        }
+        System.out.println("--------------------------------");
+        allTickets = ticketCrudService.getAllTickets();
+        allTickets.forEach(t -> System.out.println(t.toString()));
+
+
     }
 }

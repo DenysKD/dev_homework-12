@@ -2,6 +2,9 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "Client")
 public class Client {
@@ -12,6 +15,17 @@ public class Client {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private Set<Ticket> tickets = new HashSet<>();
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Long getId() {
         return id;

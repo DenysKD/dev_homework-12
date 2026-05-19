@@ -30,3 +30,7 @@ test {
 tasks.withType(JavaExec).configureEach {
     jvmArgs += "-Duser.timezone=UTC"
 }
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs('-Dfile.encoding=UTF-8', '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8')
+}
