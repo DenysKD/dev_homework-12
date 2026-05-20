@@ -69,6 +69,9 @@ public class TicketCrudService {
         if (ticketId == null || ticketId < 1) {
             throw new IllegalArgumentException("Поле ID не може бути порожнім або меншим одиниці!");
         }
+        PlanetCrudService planetCrudService = new PlanetCrudService();
+        Planet checkedPlanet = planetCrudService.getPlanet(toPlanetId);
+        //чи допустимо по правилах писати так скорочено * Planet checkedPlanet = new PlanetCrudService().getPlanet(toPlanetId); * ?
         if (toPlanetId == null || toPlanetId.isBlank()) {
             throw new IllegalArgumentException("Поле кінцевої планети не може бути пустим!");
         }
@@ -77,7 +80,10 @@ public class TicketCrudService {
             throw new IllegalArgumentException("Квитка за таким ID не існує!");
         }
         if (updatedTicket.getToPlanetId().equals(toPlanetId)) {
-            throw new IllegalArgumentException("Новий пункт призначення не може тути таким самим як і існуючий!");
+            throw new IllegalArgumentException("Новий пункт призначення не може бути таким самим як і існуючий!");
+        }
+        if(updatedTicket.getFromPlanetId().equals(toPlanetId)) {
+            throw new IllegalArgumentException("Стартова та кінцева планети не можуть бути однаковими!");
         }
         return ticketDAOService.updateTicket(updatedTicket, toPlanetId);
     }

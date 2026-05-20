@@ -83,7 +83,7 @@ public class Main{
 
         //тестування Ticket
         TicketCrudService ticketCrudService = new TicketCrudService();
-        ticketCrudService.createTicket(5L, "MARS", "EA");
+        ticketCrudService.createTicket(7L, "MARS", "EA");
         List<Ticket> allTickets = ticketCrudService.getAllTickets();
         allTickets.forEach(t -> System.out.println(t.toString()));
         System.out.println("--------------------------------");
@@ -92,12 +92,12 @@ public class Main{
             someTicket.toString();
         }
         allTickets = ticketCrudService.getAllTickets();
-        Ticket updatedTicket = ticketCrudService.updateTicket(7L, "VEN");
+        Ticket updatedTicket = ticketCrudService.updateTicket(6L, "MARS");
         if (updatedTicket != null){
             System.out.println("Квиток оновлено!");
         }
         System.out.println("--------------------------------");
-        if (ticketCrudService.deleteTicket(17L)){
+        if (ticketCrudService.deleteTicket(20L)){
             System.out.println("Квиток видалено!");
         }
         System.out.println("--------------------------------");
