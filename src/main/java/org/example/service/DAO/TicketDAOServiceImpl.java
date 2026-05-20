@@ -34,9 +34,6 @@ public class TicketDAOServiceImpl implements TicketDaoService {
         Transaction transaction = null;
         try(Session session = HibernateUtils.getInstance()
                 .getSessionFactory().openSession()){
-            if(deletedTicket == null) {
-                return false;
-            }
 
             transaction = session.beginTransaction();
             session.remove(deletedTicket);
@@ -77,20 +74,17 @@ public class TicketDAOServiceImpl implements TicketDaoService {
     }
 
     @Override
-    public boolean updateTicket(Ticket updatedTicket, String toPlanetId) {
+    public Ticket updateTicket(Ticket updatedTicket, String toPlanetId) {
 
         Transaction transaction = null;
         try(Session session = HibernateUtils.getInstance()
                 .getSessionFactory().openSession()) {
 
-            if (updatedTicket == null) {
-                return false;
-            }
             updatedTicket.setToPlanetId(toPlanetId);
             transaction = session.beginTransaction();
             session.merge(updatedTicket);
             transaction.commit();
-            return true;
+            return updatedTicket;
         } catch (Exception e) {
             if(transaction != null) {
                 transaction.rollback();

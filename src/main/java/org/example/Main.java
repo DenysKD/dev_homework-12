@@ -92,7 +92,8 @@ public class Main{
             someTicket.toString();
         }
         allTickets = ticketCrudService.getAllTickets();
-        if (ticketCrudService.updateTicket(7L, "VEN")){
+        Ticket updatedTicket = ticketCrudService.updateTicket(7L, "VEN");
+        if (updatedTicket != null){
             System.out.println("Квиток оновлено!");
         }
         System.out.println("--------------------------------");

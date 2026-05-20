@@ -65,7 +65,7 @@ public class TicketCrudService {
         return ticketDAOService.getAllTickets();
     }
 
-    public boolean updateTicket(Long ticketId, String toPlanetId) {
+    public Ticket updateTicket(Long ticketId, String toPlanetId) {
         if (ticketId == null || ticketId < 1) {
             throw new IllegalArgumentException("Поле ID не може бути порожнім або меншим одиниці!");
         }

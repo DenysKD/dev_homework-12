@@ -9,6 +9,6 @@ public interface TicketDaoService {
     Ticket createTicket(Ticket ticket);
     Ticket getTicket(Long ticketId);
     List<Ticket> getAllTickets();
-    boolean updateTicket(Ticket updatedTicket, String toPlanetId);
+    Ticket updateTicket(Ticket updatedTicket, String toPlanetId);
     boolean deleteTicket(Ticket deletedTicket);
 }
