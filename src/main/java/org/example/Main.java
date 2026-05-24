@@ -1,12 +1,8 @@
 package org.example;
 
 import org.example.entity.Ticket;
-import org.example.service.CRUDServices.ClientCrudService;
-import org.example.service.CRUDServices.PlanetCrudService;
 import org.example.DBConnection.DatabaseConnectoin;
-import org.example.entity.Client;
-import org.example.entity.Planet;
-import org.example.service.CRUDServices.TicketCrudService;
+import org.example.service.CRUDServices.TicketCrudServiceImpl;
 
 import java.util.List;
 
@@ -82,7 +78,7 @@ public class Main{
         System.out.println("===========================================");
 
         //тестування Ticket
-        TicketCrudService ticketCrudService = new TicketCrudService();
+        TicketCrudServiceImpl ticketCrudService = new TicketCrudServiceImpl();
         ticketCrudService.createTicket(7L, "MARS", "EA");
         List<Ticket> allTickets = ticketCrudService.getAllTickets();
         allTickets.forEach(t -> System.out.println(t.toString()));

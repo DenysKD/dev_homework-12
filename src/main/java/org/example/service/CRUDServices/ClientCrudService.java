@@ -7,7 +7,7 @@ import org.example.entity.Client;
 import java.util.List;
 
 public class ClientCrudService implements ClientDaoService {
-    ClientDAOServiceImpl clientDao;
+    private final ClientDAOServiceImpl clientDao;
 
     public ClientCrudService(){ clientDao = new ClientDAOServiceImpl(); }
 

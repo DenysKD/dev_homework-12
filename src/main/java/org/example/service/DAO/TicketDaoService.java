@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface TicketDaoService {
     Ticket createTicket(Ticket ticket);
+
     Ticket getTicket(Long ticketId);
+
     List<Ticket> getAllTickets();
+
     Ticket updateTicket(Ticket updatedTicket, String toPlanetId);
+
     boolean deleteTicket(Ticket deletedTicket);
 }
